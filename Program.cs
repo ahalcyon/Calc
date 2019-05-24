@@ -26,7 +26,7 @@ namespace Calc
                 {
                     num = str;
                 }
-                else if (str == "+" || str == "-" || str == "/" || str == "*" || str == "=")
+                else if (str == "+" || str == "-" || str == "/" || str == "*" || str == "^" || str == "=")
                 {
                     calc();
                 }
@@ -58,7 +58,10 @@ namespace Calc
                         result = 0;
                     }
                     break;
-                case null:
+                case "^":
+                    result = Powd(result,number);
+                    break;
+                case null://
                     result = decimal.Parse(num);
                     break;
             }
@@ -76,6 +79,17 @@ namespace Calc
             num = null;
             ope = null;
             result = 0;
+        }
+        public static decimal Powd(decimal a,decimal b)
+        {
+            if (b == 0)
+            {
+                return 1;
+            }
+            else
+            {
+                return a*Powd(a,b-1);
+            }
         }
     }
 }
